@@ -43,18 +43,18 @@ df = df[df_sel_columns]
 df.insert(0, 'CountofNullColumns', df.isnull().sum(axis='columns'))
 df.insert(0, 'ListofNullColumns', df.isnull().dot(df.columns + ',').str[:-1].str.split(',').apply(lambda x:', '.join(x)))
 ```
-- **Count of Null Columns**: df.isnull().sum(axis='columns') calculates the number of null values in each row. This count is inserted as CountofNullColumns for easy reference.
-- **List of Null Columns**: The script generates a comma-separated list of columns with null values using df.isnull().dot(df.columns + ',') and formats it with .str.split(',') and .apply(lambda x:', '.join(x)). This is inserted as ListofNullColumns.
+- **Count of Null Columns**: `df.isnull().sum(axis='columns')` calculates the number of null values in each row. This count is inserted as `CountofNullColumns` for easy reference.
+- **List of Null Columns**: The script generates a comma-separated list of columns with null values using `df.isnull().dot(df.columns + ',')` and formats it with `.str.split(',')` and `.apply(lambda x:', '.join(x))`. This is inserted as `ListofNullColumns`.
 
 ### Filtering Columns
 ```python
 df_sel_columns = df.columns[0:2]
 df = df[df_sel_columns]
 ```
-- **Purpose**: After adding columns for null value analysis, this step retains only CountofNullColumns and ListofNullColumns, ensuring the final DataFrame focuses on the null value summary.
+- **Purpose**: After adding columns for null value analysis, this step retains only `CountofNullColumns` and `ListofNullColumns`, ensuring the final DataFrame focuses on the null value summary.
 
 ## 5. Lessons Learned
-- **DataFrame Operations**: Using pandas methods like isnull(), sum(), and dot() effectively helps in summarizing null values. These methods streamline data analysis and provide insights into data completeness.
-- **Column Manipulation**: Adding new columns with information derived from existing data using insert() is a powerful technique. It enhances the DataFrame with additional insights while preserving the original structure.
+- **DataFrame Operations**: Using `pandas` methods like `isnull()`, `sum()`, and `dot()` effectively helps in summarizing null values. These methods streamline data analysis and provide insights into data completeness.
+- **Column Manipulation**: Adding new columns with information derived from existing data using `insert()` is a powerful technique. It enhances the DataFrame with additional insights while preserving the original structure.
 - **Readability and Maintenance**: Breaking down complex operations into clear steps improves code readability and maintainability. Documenting each step helps in understanding and modifying the script in the future.
 - **Performance Considerations**: For large datasets, consider performance implications. Monitoring execution time and optimizing data processing can help manage large volumes of data efficiently.
